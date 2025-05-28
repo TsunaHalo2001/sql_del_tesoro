@@ -1,25 +1,20 @@
 part of 'main.dart';
 
-class MyHomePage extends StatefulWidget {
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex = 0;
-
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget page;
-    switch (selectedIndex) {
+    var appState = context.watch<MyAppState>();
+
+    switch (appState.state) {
       case 0:
         page = StartMenu();
         break;
       case 1:
-        page = FavoritePage();
+        page = MapMenu();
         break;
       default:
-        throw UnimplementedError('no widget for $selectedIndex');
+        throw UnimplementedError('no widget for $appState.state');
     }
 
     return LayoutBuilder(
