@@ -6,6 +6,7 @@ part 'myappstate.dart';
 part 'startmenu.dart';
 part 'mapmenu.dart';
 part 'myhomepage.dart';
+part 'turtleintro.dart';
 
 void main() {
   runApp(MyApp());

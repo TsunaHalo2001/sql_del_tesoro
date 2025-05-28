@@ -6,7 +6,11 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
   void mapTurtle() {
-    state = 2; // Change to the state for the turtle map
+    state = 2; // Change to the state for the turtle selector map
+    notifyListeners();
+  }
+  void turtlePlay() {
+    state = 3; // Change to the state for the turtle intro
     notifyListeners();
   }
 

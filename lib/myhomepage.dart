@@ -13,6 +13,9 @@ class MyHomePage extends StatelessWidget {
       case 1:
         page = MapMenu();
         break;
+      case 2:
+        page = TurtleIntro();
+        break;
       default:
         throw UnimplementedError('no widget for $appState.state');
     }

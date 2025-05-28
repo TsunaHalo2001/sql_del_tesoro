@@ -10,8 +10,20 @@ class MapMenu extends StatelessWidget {
     double minSize = screenWidth < screenHeight ? screenWidth : screenHeight;
     double maxSize = screenWidth > screenHeight ? screenWidth : screenHeight;
 
-    if (screenHeight > screenWidth) return MapMenuVertical(minSize: minSize, maxSize: maxSize);
-    else return MapMenuHorizontal(minSize: minSize, maxSize: maxSize);
+    if (screenHeight > screenWidth) {
+      return MapMenuVertical(
+        minSize: minSize,
+        maxSize: maxSize,
+        appState: appState,
+      );
+    }
+    else {
+      return MapMenuHorizontal(
+        minSize: minSize,
+        maxSize: maxSize,
+        appState: appState,
+      );
+    }
   }
 }
 
@@ -20,10 +32,12 @@ class MapMenuVertical extends StatelessWidget {
     super.key,
     required this.minSize,
     required this.maxSize,
+    required this.appState,
   });
 
   final double minSize;
   final double maxSize;
+  final MyAppState appState;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +55,7 @@ class MapMenuVertical extends StatelessWidget {
                 islandImage: "assets/png/turtleislandtransparent.png",
                 islandName: "Isla Tortuga",
                 islandColor: Colors.green,
+                onPressed: appState.mapTurtle,
               ),
               Row(
                 children: [
@@ -50,6 +65,7 @@ class MapMenuVertical extends StatelessWidget {
                     islandImage: "assets/png/treasureislandtransparent.png",
                     islandName: "Isla Tesoro",
                     islandColor: Colors.amber,
+                    onPressed: appState.mapTurtle,
                   ),
                   Spacer(),
                 ],
@@ -63,6 +79,7 @@ class MapMenuVertical extends StatelessWidget {
                     islandImage: "assets/png/sharkislandtransparent.png",
                     islandName: "Isla Tiburón",
                     islandColor: Colors.deepPurple,
+                    onPressed: appState.mapTurtle,
                   ),
                   Spacer(),
                   MapIsland(
@@ -71,6 +88,7 @@ class MapMenuVertical extends StatelessWidget {
                     islandImage: "assets/png/ghostislandtransparent.png",
                     islandName: "Isla Fantasma",
                     islandColor: Colors.grey,
+                    onPressed: appState.mapTurtle,
                   ),
                 ],
               ),
@@ -80,6 +98,7 @@ class MapMenuVertical extends StatelessWidget {
                 islandImage: "assets/png/skullislandtransparent.png",
                 islandName: "Isla Calavera",
                 islandColor: Colors.deepOrange,
+                onPressed: appState.mapTurtle,
               ),
               Spacer(),
             ],
@@ -95,10 +114,12 @@ class MapMenuHorizontal extends StatelessWidget {
     super.key,
     required this.minSize,
     required this.maxSize,
+    required this.appState,
   });
 
   final double minSize;
   final double maxSize;
+  final MyAppState appState;
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +137,7 @@ class MapMenuHorizontal extends StatelessWidget {
                 islandImage: "assets/png/turtleislandtransparent.png",
                 islandName: "Turtle Island",
                 islandColor: Colors.green,
+                onPressed: appState.mapTurtle,
               ),
               Spacer(),
               Column(
@@ -126,6 +148,7 @@ class MapMenuHorizontal extends StatelessWidget {
                     islandImage: "assets/png/treasureislandtransparent.png",
                     islandName: "Treasure Island",
                     islandColor: Colors.amber,
+                    onPressed: appState.mapTurtle,
                   ),
                   Spacer(),
                 ],
@@ -140,6 +163,7 @@ class MapMenuHorizontal extends StatelessWidget {
                     islandImage: "assets/png/sharkislandtransparent.png",
                     islandName: "Shark Island",
                     islandColor: Colors.deepPurple,
+                    onPressed: appState.mapTurtle,
                   ),
                   Spacer(),
                   MapIsland(
@@ -148,6 +172,7 @@ class MapMenuHorizontal extends StatelessWidget {
                     islandImage: "assets/png/ghostislandtransparent.png",
                     islandName: "Ghost Island",
                     islandColor: Colors.grey,
+                    onPressed: appState.mapTurtle,
                   ),
                 ],
               ),
@@ -158,6 +183,7 @@ class MapMenuHorizontal extends StatelessWidget {
                 islandImage: "assets/png/skullislandtransparent.png",
                 islandName: "Skull Island",
                 islandColor: Colors.deepOrange,
+                onPressed: appState.mapTurtle,
               ),
               Spacer(),
             ],
@@ -176,6 +202,7 @@ class MapIsland extends StatelessWidget {
     required this.islandImage,
     required this.islandName,
     required this.islandColor,
+    required this.onPressed,
   });
 
   final double maxSize;
@@ -183,6 +210,7 @@ class MapIsland extends StatelessWidget {
   final String islandImage;
   final String islandName;
   final Color islandColor;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -190,8 +218,7 @@ class MapIsland extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: (){
-          },
+          onPressed: onPressed,
           icon: Image(
             image: AssetImage(islandImage),
             width: maxSize * 0.15,

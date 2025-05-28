@@ -8,6 +8,7 @@ class StartMenu extends StatelessWidget {
     double screenWidth = MediaQuery.sizeOf(context).width;
     double screenHeight = MediaQuery.sizeOf(context).height;
     double minSize = screenWidth < screenHeight ? screenWidth : screenHeight;
+    double maxSize = screenWidth > screenHeight ? screenWidth : screenHeight;
 
     return Stack(
       children: [
