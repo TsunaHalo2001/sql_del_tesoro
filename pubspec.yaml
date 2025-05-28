@@ -17,6 +17,8 @@ dependencies:
   flame: ^1.29.0
   lottie:
   flame_lottie:
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:
@@ -31,3 +33,4 @@ flutter:
     - assets/glb/
     - assets/json/
     - assets/gif/
+    - assets/jpg/

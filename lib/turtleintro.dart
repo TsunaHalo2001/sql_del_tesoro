@@ -54,7 +54,11 @@ class TurtleIntroVertical extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            IslandBanner(minSize: minSize, maxSize: maxSize, isVertical: screenHeight > screenWidth),
+            IslandBanner(minSize: minSize,
+              maxSize: maxSize,
+              isVertical: screenHeight > screenWidth,
+              islandImage: "assets/png/turtleisland.png",
+            ),
             TextScrollable(
               minSize: minSize,
               title: "¡Bienvenido a la Isla Tortuga!",
@@ -124,7 +128,12 @@ class TurtleIntroHorizontal extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: IslandBanner(minSize: minSize, maxSize: maxSize, isVertical: screenHeight > screenWidth)),
+            Expanded(child: IslandBanner(
+              minSize: minSize,
+              maxSize: maxSize,
+              isVertical: screenHeight > screenWidth,
+              islandImage: "assets/png/turtleisland.png",
+            )),
             Expanded(
               child: Column(
                 children: [
@@ -132,12 +141,14 @@ class TurtleIntroHorizontal extends StatelessWidget {
                     minSize: minSize,
                     title: "¡Bienvenido a la Isla Tortuga!",
                     description: "Aquí empieza tu viaje a traves de SQL y las bases de datos. "
-                        "En esta isla te enseñaremos a usar SELECT y WHERE, "
+                        "En esta isla te enseñaremos a usar SELECT, WHERE y COUNT, "
                         "un comando que te permite elegir atributos de una tabla. "
                         "Con SELECT podras escoger cual columna de una tabla quieres ver, "
-                        "y con WHERE podras filtrar los resultados segun tus necesidades. "
+                        "con WHERE podras filtrar los resultados segun tus necesidades, "
+                        "y con COUNT podras contar el numero de filas que cumplen una condicion. "
                         "Usaras SELECT para elegir el monton de tortugas que quieres, "
-                        "y WHERE para sacar el tesoro de entre el monton."
+                        "WHERE para sacar el tesoro de entre el monton y "
+                        "COUNT para ver cuantos tesoros encontraste. "
                         "Preparate para buscar tesoros escondidos.",
                   ),
                   SafeArea(
@@ -182,11 +193,13 @@ class IslandBanner extends StatelessWidget {
     required this.minSize,
     required this.maxSize,
     required this.isVertical,
+    required this.islandImage,
   });
 
   final double minSize;
   final double maxSize;
   final bool isVertical;
+  final String islandImage;
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +209,7 @@ class IslandBanner extends StatelessWidget {
           decoration:
           BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/png/turtleisland.png"),
+              image: AssetImage(islandImage),
               fit: BoxFit.cover,
             ),
           ),
@@ -210,7 +223,7 @@ class IslandBanner extends StatelessWidget {
           decoration:
           BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/png/turtleisland.png"),
+              image: AssetImage(islandImage),
               fit: BoxFit.cover,
             ),
           ),

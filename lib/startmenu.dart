@@ -12,7 +12,7 @@ class StartMenu extends StatelessWidget {
 
     return Stack(
       children: [
-        MainBG(),
+        MainBG(bgImage: "assets/png/mainbg.png",),
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -39,14 +39,18 @@ class StartMenu extends StatelessWidget {
 class MainBG extends StatelessWidget {
   const MainBG({
     super.key,
+
+    required this.bgImage,
   });
+
+  final String bgImage;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/png/mainbg.png"),
+          image: AssetImage(bgImage),
           fit: BoxFit.cover,
         ),
       ),

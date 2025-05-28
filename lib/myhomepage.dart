@@ -16,6 +16,10 @@ class MyHomePage extends StatelessWidget {
       case 2:
         page = TurtleIntro();
         break;
+      case 3:
+        page = TurtleIsland();
+        appState.getTurtleTreasure();
+        break;
       default:
         throw UnimplementedError('no widget for $appState.state');
     }
