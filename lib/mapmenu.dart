@@ -79,7 +79,7 @@ class MapMenuVertical extends StatelessWidget {
                     islandImage: "assets/png/sharkislandtransparent.png",
                     islandName: "Isla Tiburón",
                     islandColor: Colors.deepPurple,
-                    onPressed: appState.mapTurtle,
+                    onPressed: appState.mapShark,
                   ),
                   MapIsland(
                     maxSize: maxSize,
@@ -159,7 +159,7 @@ class MapMenuHorizontal extends StatelessWidget {
                     islandImage: "assets/png/sharkislandtransparent.png",
                     islandName: "Shark Island",
                     islandColor: Colors.deepPurple,
-                    onPressed: appState.mapTurtle,
+                    onPressed: appState.mapShark,
                   ),
                   MapIsland(
                     maxSize: maxSize,

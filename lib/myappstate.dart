@@ -71,6 +71,14 @@ class MyAppState extends ChangeNotifier {
 
     notifyListeners();
   }
+  void mapShark() {
+    state = 6; // Change to the state for the shark intro
+    notifyListeners();
+  }
+  void sharkPlay() {
+    state = 7; // Change to the state for the shark play
+    notifyListeners();
+  }
   String printTreasures() {
     String result = '';
 
@@ -81,6 +89,16 @@ class MyAppState extends ChangeNotifier {
       result += '${turtle.name} tiene ${turtle.treasure} tesoros.\n';
     }
     return result;
+  }
+  void eraseDatabase() async {
+    final dbz = await getdb(); // Assuming DatabaseProvider is defined in the main scope
+    await Turtle.eraseDatabase(dbz, 'all'); // Clear all turtles and records
+    turtles.clear(); // Clear the turtles list
+    turtlesGot.clear(); // Clear the turtles got list
+    cannons = 0; // Reset cannons
+    sharkKilled = 0; // Reset sharks killed
+    ghostKilled = 0; // Reset ghosts killed
+    notifyListeners();
   }
 
   Future<void> generate(String type) async {
@@ -210,6 +228,21 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> killShark() async {
+    final dbz = await getdb();
+    if (cannons <= 0) {
+      return; // No cannons available to kill the shark
+    }
+    sharkKilled++;
+    cannons--;
+    await dbz.insert(
+      'records',
+      {'id': 1, 'turtle': 0, 'cannons': cannons, 'shark_killed': sharkKilled, 'ghost_killed': ghostKilled, 'skull': skull},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    notifyListeners();
+  }
+
   var state = 0;
   List<Turtle> turtles = [];
   List<Turtle> turtlesGot = [];
@@ -257,6 +290,23 @@ class Turtle {
     else if (data == 'turtle_got') {
       await db.execute(
         'DELETE FROM turtle_got',
+      );
+    }
+    else if (data == 'all') {
+      await db.execute(
+        'DELETE FROM turtle',
+      );
+      await db.execute(
+        'DELETE FROM turtle_got',
+      );
+      await db.execute(
+        'DELETE FROM records',
+      );
+      await db.execute(
+        'DELETE FROM shark',
+      );
+      await db.execute(
+        'DELETE FROM ghost',
       );
     }
   }

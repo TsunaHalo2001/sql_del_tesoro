@@ -28,6 +28,13 @@ class MyHomePage extends StatelessWidget {
         appState.getTreasure();
         appState.getRecords();
         break;
+      case 6:
+        page = SharkIntro();
+        break;
+      case 7:
+        page = SharkIsland();
+        appState.getRecords();
+        break;
       default:
         throw UnimplementedError('no widget for $appState.state');
     }

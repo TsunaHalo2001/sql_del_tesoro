@@ -20,6 +20,7 @@ class StartMenu extends StatelessWidget {
               MainTitle(minSize: minSize * 0.8),
               SizedBox(height: screenHeight * 0.2),
               MainButton(appState: appState, minSize: minSize),
+              IconButton(onPressed: appState.eraseDatabase, icon: Icon(Icons.delete, color: Colors.red, size: minSize * 0.1)),
             ],
           ),
         ),

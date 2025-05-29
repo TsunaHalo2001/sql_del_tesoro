@@ -1,6 +1,6 @@
 part of 'main.dart';
 
-class TreasureIntro extends StatelessWidget {
+class SharkIntro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
@@ -11,7 +11,7 @@ class TreasureIntro extends StatelessWidget {
     double maxSize = screenWidth > screenHeight ? screenWidth : screenHeight;
 
     if (screenHeight > screenWidth) {
-      return TreasureIntroVertical(
+      return SharkIntroVertical(
         minSize: minSize,
         maxSize: maxSize,
         screenHeight: screenHeight,
@@ -19,7 +19,7 @@ class TreasureIntro extends StatelessWidget {
         appState: appState,
       );
     } else {
-      return TreasureIntroHorizontal(
+      return SharkIntroHorizontal(
         minSize: minSize,
         maxSize: maxSize,
         screenHeight: screenHeight,
@@ -30,8 +30,8 @@ class TreasureIntro extends StatelessWidget {
   }
 }
 
-class TreasureIntroVertical extends StatelessWidget {
-  const TreasureIntroVertical({
+class SharkIntroVertical extends StatelessWidget {
+  const SharkIntroVertical({
     super.key,
     required this.minSize,
     required this.maxSize,
@@ -50,22 +50,21 @@ class TreasureIntroVertical extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        IntroBG(color: Colors.limeAccent,),
+        IntroBG(color: Colors.blueAccent,),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IslandBanner(minSize: minSize,
               maxSize: maxSize,
               isVertical: screenHeight > screenWidth,
-              islandImage: "assets/png/treasureisland.png",
+              islandImage: "assets/png/sharkislandtransparent.png",
             ),
             TextScrollable(
               minSize: minSize,
-              title: "¡Bienvenido a la Isla Tesoro!",
-              description: "En esta isla te enseñaremos a usar UPDATE, "
-                  "un comando que te permite modificar atributos de una tabla. "
-                  "Usaras UPDATE para actualizar tus tesoros al comprar cañones, "
-                  "los necesitaras.",
+              title: "¡Bienvenido a la Isla Tiburon!",
+              description: "En esta isla te enseñaremos a usar DELETE, "
+                  "un comando que te permite eliminar atributos de una tabla. "
+                  "Usaras DELETE para eliminar los tiburones con tus cañones.",
             ),
             SafeArea(
               top: false,
@@ -83,10 +82,10 @@ class TreasureIntroVertical extends StatelessWidget {
                   CommonButton(
                     appState: appState,
                     minSize: minSize,
-                    onPressed: appState.treasurePlay,
+                    onPressed: appState.sharkPlay,
                     label: "¡Empezar!",
                     labelColor: Colors.white,
-                    buttonColor: Colors.amber,
+                    buttonColor: Colors.deepPurple,
                   ),
                 ],
               ),
@@ -98,8 +97,8 @@ class TreasureIntroVertical extends StatelessWidget {
   }
 }
 
-class TreasureIntroHorizontal extends StatelessWidget {
-  const TreasureIntroHorizontal({
+class SharkIntroHorizontal extends StatelessWidget {
+  const SharkIntroHorizontal({
     super.key,
     required this.minSize,
     required this.maxSize,
@@ -118,7 +117,7 @@ class TreasureIntroHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        IntroBG(color: Colors.limeAccent,),
+        IntroBG(color: Colors.blueAccent,),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -126,7 +125,7 @@ class TreasureIntroHorizontal extends StatelessWidget {
               minSize: minSize,
               maxSize: maxSize,
               isVertical: screenHeight > screenWidth,
-              islandImage: "assets/png/treasureisland.png",
+              islandImage: "assets/png/sharkislandtransparent.png",
             )),
             Expanded(
               child: Column(
@@ -134,10 +133,9 @@ class TreasureIntroHorizontal extends StatelessWidget {
                   TextScrollable(
                     minSize: minSize,
                     title: "¡Bienvenido a la Isla Tesoro!",
-                    description: "En esta isla te enseñaremos a usar UPDATE, "
-                        "un comando que te permite modificar atributos de una tabla. "
-                        "Usaras UPDATE para actualizar tus tesoros al comprar cañones, "
-                        "los necesitaras.",
+                    description: "En esta isla te enseñaremos a usar DELETE, "
+                        "un comando que te permite eliminar atributos de una tabla. "
+                        "Usaras DELETE para eliminar los tiburones con tus cañones.",
                   ),
                   SafeArea(
                     top: false,
@@ -155,10 +153,10 @@ class TreasureIntroHorizontal extends StatelessWidget {
                         CommonButton(
                           appState: appState,
                           minSize: minSize,
-                          onPressed: appState.treasurePlay,
+                          onPressed: appState.sharkPlay,
                           label: "¡Empezar!",
                           labelColor: Colors.white,
-                          buttonColor: Colors.amber,
+                          buttonColor: Colors.deepPurple,
                         ),
                       ],
                     ),
