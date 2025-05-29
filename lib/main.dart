@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -14,6 +13,8 @@ part 'mapmenu.dart';
 part 'myhomepage.dart';
 part 'turtleintro.dart';
 part 'turtleisland.dart';
+part 'treasureintro.dart';
+part 'treasureisland.dart';
 
 void main() async {
 

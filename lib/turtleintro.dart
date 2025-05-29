@@ -72,10 +72,10 @@ class TurtleIntroVertical extends StatelessWidget {
                   "Preparate para buscar tesoros escondidos.",
             ),
             SafeArea(
+              top: false,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Spacer(),
                   CommonButton(
                     appState: appState,
                     minSize: minSize,
@@ -84,7 +84,6 @@ class TurtleIntroVertical extends StatelessWidget {
                     labelColor: Colors.white,
                     buttonColor: Colors.blue,
                   ),
-                  Spacer(),
                   CommonButton(
                     appState: appState,
                     minSize: minSize,
@@ -93,7 +92,6 @@ class TurtleIntroVertical extends StatelessWidget {
                     labelColor: Colors.white,
                     buttonColor: Colors.green,
                   ),
-                  Spacer(),
                 ],
               ),
             ),
@@ -152,10 +150,10 @@ class TurtleIntroHorizontal extends StatelessWidget {
                         "Preparate para buscar tesoros escondidos.",
                   ),
                   SafeArea(
+                    top: false,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Spacer(),
                         CommonButton(
                           appState: appState,
                           minSize: minSize,
@@ -164,7 +162,6 @@ class TurtleIntroHorizontal extends StatelessWidget {
                           labelColor: Colors.white,
                           buttonColor: Colors.blue,
                         ),
-                        Spacer(),
                         CommonButton(
                           appState: appState,
                           minSize: minSize,
@@ -173,7 +170,6 @@ class TurtleIntroHorizontal extends StatelessWidget {
                           labelColor: Colors.white,
                           buttonColor: Colors.green,
                         ),
-                        Spacer(),
                       ],
                     ),
                   ),
@@ -298,7 +294,7 @@ class CommonButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: minSize * 0.1, vertical: minSize * 0.02),
+        padding: EdgeInsets.symmetric(horizontal: minSize * 0.08, vertical: minSize * 0.012),
         backgroundColor: buttonColor,
       ),
       child: Text(

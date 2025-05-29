@@ -61,6 +61,27 @@ class MyAppState extends ChangeNotifier {
     turtlesGot = await getTurtles(); // Get turtles from the database
     notifyListeners();
   }
+  void mapTreasure() {
+    state = 4; // Change to the state for the treasure selector map
+    notifyListeners();
+  }
+  void treasurePlay() async {
+    state = 5; // Change to the state for the treasure intro
+    turtlesGot = await getTurtles(); // Get turtles from the database
+
+    notifyListeners();
+  }
+  String printTreasures() {
+    String result = '';
+
+    List<Turtle> sortedTurtles = List.from(turtlesGot);
+    sortedTurtles.sort((a, b) => b.treasure.compareTo(a.treasure));
+
+    for (var turtle in sortedTurtles) {
+      result += '${turtle.name} tiene ${turtle.treasure} tesoros.\n';
+    }
+    return result;
+  }
 
   Future<void> generate(String type) async {
     final dbz = await getdb(); // Assuming DatabaseProvider is defined in the main scope
@@ -131,11 +152,74 @@ class MyAppState extends ChangeNotifier {
     treasures = totalTreasure; // Return the total treasure of all turtles
   }
 
+  Future<void> getTreasure() async {
+    final dbz = await getdb(); // Assuming DatabaseProvider is defined in the main scope
+    final List<Map<String, Object?>> maps = await dbz.query('turtle_got');
+
+    turtlesGot = [
+      for (final map in maps)
+        Turtle(
+          name: map['name'] as String,
+          treasure: map['treasure'] as int,
+        ),
+    ];
+    notifyListeners();
+  }
+
+  Future<void> purchaseCannon(String name) async {
+    final dbz = await getdb();
+
+    for (var turtle in turtlesGot) {
+      if (turtle.name == name && turtle.treasure >= 10) {
+        turtle.treasure -= 10; // Assuming each cannon costs 10 treasures
+        await turtle.saveToDatabase(dbz, 'turtle_got'); // Save the updated turtle to the database
+        await addCannon(); // Add a cannon
+        notifyListeners();
+      }
+    }
+  }
+
+  Future<void> addCannon() async {
+    final dbz = await getdb();
+
+    cannons++;
+    await dbz.insert(
+      'records',
+      {'id': 1, 'turtle': 0, 'cannons': cannons, 'shark_killed': sharkKilled, 'ghost_killed': ghostKilled, 'skull': skull},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+
+    notifyListeners();
+  }
+
+  Future<void> getRecords() async {
+    final dbz = await getdb();
+    final List<Map<String, Object?>> maps = await dbz.query('records');
+
+    if (maps.isNotEmpty) {
+      cannons = maps[0]['cannons'] as int; // Get the number of cannons from the database
+      sharkKilled = maps[0]['shark_killed'] as int; // Get the number of sharks killed from the database
+      ghostKilled = maps[0]['ghost_killed'] as int; // Get the number of ghosts killed from the database
+      skull = maps[0]['skull'] as int; // Get the number of skulls from the database
+    } else {
+      cannons = 0; // If no records, set cannons to 0
+      sharkKilled = 0; // If no records, set sharks killed to 0
+      ghostKilled = 0; // If no records, set ghosts killed to 0
+      skull = 0; // If no records, set skulls to 0
+    }
+    notifyListeners();
+  }
+
   var state = 0;
   List<Turtle> turtles = [];
   List<Turtle> turtlesGot = [];
   bool isChecked = false;
   int treasures = 0;
+  String actualTreasure = '';
+  int cannons = 0;
+  int sharkKilled = 0;
+  int ghostKilled = 0;
+  int skull = 0;
 }
 
 class Turtle {

@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 0.0.1+1
+version: 0.0.1+2
 
 environment:
   sdk: '>=2.19.4 <4.0.0'
@@ -18,6 +18,7 @@ dependencies:
   lottie:
   flame_lottie:
   sqflite:
+  sqflite_common_ffi:
   path:
 
 dev_dependencies:
@@ -34,3 +35,4 @@ flutter:
     - assets/json/
     - assets/gif/
     - assets/jpg/
+    - assets/webp/

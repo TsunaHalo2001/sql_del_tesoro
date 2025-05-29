@@ -47,8 +47,8 @@ class MapMenuVertical extends StatelessWidget {
         MapBG(),
         Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Spacer(),
               MapIsland(
                 minSize: minSize,
                 maxSize: maxSize,
@@ -58,6 +58,7 @@ class MapMenuVertical extends StatelessWidget {
                 onPressed: appState.mapTurtle,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   MapIsland(
                     minSize: minSize,
@@ -65,14 +66,13 @@ class MapMenuVertical extends StatelessWidget {
                     islandImage: "assets/png/treasureislandtransparent.png",
                     islandName: "Isla Tesoro",
                     islandColor: Colors.amber,
-                    onPressed: appState.mapTurtle,
+                    onPressed: appState.mapTreasure,
                   ),
-                  Spacer(),
                 ],
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Spacer(),
                   MapIsland(
                     maxSize: maxSize,
                     minSize: minSize,
@@ -81,7 +81,6 @@ class MapMenuVertical extends StatelessWidget {
                     islandColor: Colors.deepPurple,
                     onPressed: appState.mapTurtle,
                   ),
-                  Spacer(),
                   MapIsland(
                     maxSize: maxSize,
                     minSize: minSize,
@@ -100,7 +99,6 @@ class MapMenuVertical extends StatelessWidget {
                 islandColor: Colors.deepOrange,
                 onPressed: appState.mapTurtle,
               ),
-              Spacer(),
             ],
           ),
         ),
@@ -129,8 +127,8 @@ class MapMenuHorizontal extends StatelessWidget {
         MapBG(),
         Center(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Spacer(),
               MapIsland(
                 minSize: minSize,
                 maxSize: maxSize,
@@ -139,8 +137,8 @@ class MapMenuHorizontal extends StatelessWidget {
                 islandColor: Colors.green,
                 onPressed: appState.mapTurtle,
               ),
-              Spacer(),
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   MapIsland(
                     minSize: minSize,
@@ -148,15 +146,13 @@ class MapMenuHorizontal extends StatelessWidget {
                     islandImage: "assets/png/treasureislandtransparent.png",
                     islandName: "Treasure Island",
                     islandColor: Colors.amber,
-                    onPressed: appState.mapTurtle,
+                    onPressed: appState.mapTreasure,
                   ),
-                  Spacer(),
                 ],
               ),
-              Spacer(),
               Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Spacer(),
                   MapIsland(
                     maxSize: maxSize,
                     minSize: minSize,
@@ -165,7 +161,6 @@ class MapMenuHorizontal extends StatelessWidget {
                     islandColor: Colors.deepPurple,
                     onPressed: appState.mapTurtle,
                   ),
-                  Spacer(),
                   MapIsland(
                     maxSize: maxSize,
                     minSize: minSize,
@@ -176,7 +171,6 @@ class MapMenuHorizontal extends StatelessWidget {
                   ),
                 ],
               ),
-              Spacer(),
               MapIsland(
                 maxSize: maxSize,
                 minSize: minSize,
@@ -185,7 +179,6 @@ class MapMenuHorizontal extends StatelessWidget {
                 islandColor: Colors.deepOrange,
                 onPressed: appState.mapTurtle,
               ),
-              Spacer(),
             ],
           ),
         ),
